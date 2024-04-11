@@ -1,4 +1,4 @@
-declare enum Color {
+export declare enum Color {
     FgBlack = "\u001B[30m%s\u001B[0m",
     FgRed = "\u001B[31m%s\u001B[0m",
     FgGreen = "\u001B[32m%s\u001B[0m",
@@ -18,7 +18,7 @@ declare enum Color {
     BgWhite = "\u001B[47m%s\u001B[0m",
     BgGray = "\u001B[100m%s\u001B[0m"
 }
-declare enum Font {
+export declare enum Font {
     Reset = "\u001B[0m%s\u001B[0m",
     Bright = "\u001B[1m%s\u001B[0m",
     Dim = "\u001B[2m%s\u001B[0m",
@@ -30,8 +30,40 @@ declare enum Font {
     Strikethrough = "\u001B[9m",
     Bold = "\u001B[1m"
 }
-
-declare class Log {
+export declare const bgColors: {
+    Black: Color;
+    Red: Color;
+    Green: Color;
+    Yellow: Color;
+    Blue: Color;
+    Magenta: Color;
+    Cyan: Color;
+    White: Color;
+    Gray: Color;
+};
+export declare const fgColors: {
+    Black: Color;
+    Red: Color;
+    Green: Color;
+    Yellow: Color;
+    Blue: Color;
+    Magenta: Color;
+    Cyan: Color;
+    White: Color;
+    Gray: Color;
+};
+export declare const font: {
+    Reset: Font;
+    Blink: Font;
+    Dim: Font;
+    Hidden: Font;
+    Reverse: Font;
+    Underscore: Font;
+    Italic: Font;
+    Strikethrough: Font;
+    Bold: Font;
+};
+export default class Log {
     static c: Color;
     static colorSet: {
         Black: Color;
@@ -41,11 +73,7 @@ declare class Log {
         Blue: Color;
         Magenta: Color;
         Cyan: Color;
-        White: Color; /**
-         *
-         * @param s String to print
-         * @description Prints an success message
-         */
+        White: Color;
         Gray: Color;
     };
     static f: Font;
@@ -92,7 +120,6 @@ declare class Log {
      * @description Prints an success message
      */
     static success(s: string): void;
-    static createList(): LogList;
     static reset(): typeof Log;
     static blink(): typeof Log;
     static dim(): typeof Log;
@@ -102,11 +129,11 @@ declare class Log {
     static italic(): typeof Log;
     static strike(): typeof Log;
     static bold(): typeof Log;
+    static createList(): LogList;
 }
-declare class LogList {
+declare class LogList extends Log {
     list: string[];
     add(s: string): string;
     log(): void;
 }
-
-export { Log as default };
+export {};

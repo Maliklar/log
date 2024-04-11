@@ -1,2 +1,2 @@
-const Log = require("log");
-Log.log("Hi");
+import Log from "../dist/index.js";
+Log.bold().log("HI");
