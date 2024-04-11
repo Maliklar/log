@@ -1,31 +1,9 @@
-import { Color } from "./colors";
-
-const bgColors = {
-  Black: Color.BgBlack,
-  Red: Color.BgRed,
-  Green: Color.BgGreen,
-  Yellow: Color.BgYellow,
-  Blue: Color.BgBlue,
-  Magenta: Color.BgMagenta,
-  Cyan: Color.BgCyan,
-  White: Color.BgWhite,
-  Gray: Color.BgGray,
-};
-const fgColors = {
-  Black: Color.FgBlack,
-  Red: Color.FgRed,
-  Green: Color.FgGreen,
-  Yellow: Color.FgYellow,
-  Blue: Color.FgBlue,
-  Magenta: Color.FgMagenta,
-  Cyan: Color.FgCyan,
-  White: Color.FgWhite,
-  Gray: Color.FgGray,
-};
+import { bgColors, Color, fgColors, Font, font } from "./constants";
 
 export default class Log {
   static c: Color;
   static colorSet = bgColors;
+  static f: Font;
 
   /**
    *
@@ -96,6 +74,43 @@ export default class Log {
 
   static createList() {
     return new LogList();
+  }
+
+  static reset() {
+    this.f = font.Reset;
+    return this;
+  }
+  static blink() {
+    this.f = font.Blink;
+    return this;
+  }
+  static dim() {
+    this.f = font.Dim;
+    return this;
+  }
+  static hidden() {
+    this.f = font.Hidden;
+    return this;
+  }
+  static reverse() {
+    this.f = font.Reverse;
+    return this;
+  }
+  static underscore() {
+    this.f = font.Underscore;
+    return this;
+  }
+  static italic() {
+    this.f = font.Italic;
+    return this;
+  }
+  static strike() {
+    this.f = font.Strikethrough;
+    return this;
+  }
+  static bold() {
+    this.f = font.Bold;
+    return this;
   }
 }
 
