@@ -1,2 +1,2 @@
-import log from "log";
-log.log();
+const Log = require("log");
+Log.log("Hi");

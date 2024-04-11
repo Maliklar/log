@@ -2,21 +2,44 @@
   "name": "log",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
-    "test": "node test/index.js"
+    "test": "node test/index.js",
+    "build": "tsup"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Maliklar/log.git"
   },
   "keywords": [
-    "log"
+    "log",
+    "log colors",
+    "typescript",
+    "log with styles",
+    "log styles",
+    "node logger",
+    "node log",
+    "colored logs",
+    "colored logs node",
+    "styled logs node",
+    "styled logs"
   ],
   "author": "Malik Elbadri",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Maliklar/log/issues"
   },
-  "homepage": "https://github.com/Maliklar/log#readme"
+  "homepage": "https://github.com/Maliklar/log#readme",
+  "devDependencies": {
+    "@types/jest": "^29.5.12",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.1.2",
+    "tsup": "^8.0.2",
+    "typescript": "^5.4.5"
+  }
 }
