@@ -26,9 +26,9 @@ export declare enum Font {
     Blink = "\u001B[5m%s\u001B[0m",
     Reverse = "\u001B[7m%s\u001B[0m",
     Hidden = "\u001B[8m%s\u001B[0m",
-    Italic = "\u001B[3m",
-    Strikethrough = "\u001B[9m",
-    Bold = "\u001B[1m"
+    Italic = "\u001B[3m%s\u001B[0m",
+    Strikethrough = "\u001B[9m%s\u001B[0m",
+    Bold = "\u001B[1m%s\u001B[0m"
 }
 export declare const bgColors: {
     Black: Color;
@@ -64,7 +64,7 @@ export declare const font: {
     Bold: Font;
 };
 export default class Log {
-    static c: Color;
+    static c: Color | undefined;
     static colorSet: {
         Black: Color;
         Red: Color;
@@ -76,7 +76,7 @@ export default class Log {
         White: Color;
         Gray: Color;
     };
-    static f: Font;
+    static f: Font | undefined;
     /**
      *
      * @param c Color for the string
@@ -91,11 +91,11 @@ export default class Log {
     /**
      * @description background color
      */
-    static bg(): void;
+    static bg(c?: Color): void;
     /**
      * @description foreground color
      */
-    static fr(): void;
+    static fr(c?: Color): void;
     /**
      *
      * @param s String to print
@@ -129,6 +129,8 @@ export default class Log {
     static italic(): typeof Log;
     static strike(): typeof Log;
     static bold(): typeof Log;
+    static style(f: Font): void;
+    static clear(): void;
     static createList(): LogList;
 }
 declare class LogList extends Log {

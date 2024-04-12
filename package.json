@@ -1,5 +1,5 @@
 {
-  "name": "log",
+  "name": "node-fancy-log",
   "version": "1.0.0",
   "description": "",
   "main": "./dist/index.js",
@@ -34,5 +34,8 @@
   "bugs": {
     "url": "https://github.com/Maliklar/log/issues"
   },
-  "homepage": "https://github.com/Maliklar/log#readme"
+  "homepage": "https://github.com/Maliklar/log#readme",
+  "dependencies": {
+    "node-fancy-log": "^1.0.0"
+  }
 }

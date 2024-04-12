@@ -28,9 +28,9 @@ export enum Font {
   Blink = "\x1b[5m%s\x1b[0m",
   Reverse = "\x1b[7m%s\x1b[0m",
   Hidden = "\x1b[8m%s\x1b[0m",
-  Italic = "\x1b[3m",
-  Strikethrough = "\x1b[9m",
-  Bold = "\x1b[1m",
+  Italic = "\x1b[3m%s\x1b[0m",
+  Strikethrough = "\x1b[9m%s\x1b[0m",
+  Bold = "\x1b[1m%s\x1b[0m",
 }
 
 export const bgColors = {
@@ -68,9 +68,9 @@ export const font = {
 };
 
 export default class Log {
-  static c: Color;
+  static c: Color | undefined;
   static colorSet = bgColors;
-  static f: Font;
+  static f: Font | undefined;
 
   /**
    *
@@ -87,21 +87,25 @@ export default class Log {
    * @param s String to print
    */
   static log(s: string) {
-    console.log(s);
+    const arr = [this.c, this.f, s].filter((i) => !!i);
+    if (arr) console.log(...arr);
+    this.clear();
   }
 
   /**
    * @description background color
    */
-  static bg() {
-    this.colorSet = bgColors;
+  static bg(c?: Color) {
+    if (c) this.c = c;
+    else this.colorSet = bgColors;
   }
 
   /**
    * @description foreground color
    */
-  static fr() {
-    this.colorSet = fgColors;
+  static fr(c?: Color) {
+    if (c) this.c = c;
+    else this.colorSet = fgColors;
   }
 
   /**
@@ -111,6 +115,7 @@ export default class Log {
    */
   static error(s: string) {
     console.log(this.colorSet.Red, s);
+    this.clear();
   }
   /**
    *
@@ -119,6 +124,7 @@ export default class Log {
    */
   static warning(s: string) {
     console.log(this.colorSet.Yellow, s);
+    this.clear();
   }
 
   /**
@@ -128,6 +134,7 @@ export default class Log {
    */
   static progress(s: string) {
     console.log(this.colorSet.Blue, s);
+    this.clear();
   }
 
   /**
@@ -137,6 +144,7 @@ export default class Log {
    */
   static success(s: string) {
     console.log(this.colorSet.Green, s);
+    this.clear();
   }
 
   static reset() {
@@ -174,6 +182,14 @@ export default class Log {
   static bold() {
     this.f = font.Bold;
     return this;
+  }
+  static style(f: Font) {
+    this.f = f;
+  }
+
+  static clear() {
+    this.c = undefined;
+    this.f = undefined;
   }
 
   static createList() {

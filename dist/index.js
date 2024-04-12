@@ -28,9 +28,9 @@ export var Font;
     Font["Blink"] = "\u001B[5m%s\u001B[0m";
     Font["Reverse"] = "\u001B[7m%s\u001B[0m";
     Font["Hidden"] = "\u001B[8m%s\u001B[0m";
-    Font["Italic"] = "\u001B[3m";
-    Font["Strikethrough"] = "\u001B[9m";
-    Font["Bold"] = "\u001B[1m";
+    Font["Italic"] = "\u001B[3m%s\u001B[0m";
+    Font["Strikethrough"] = "\u001B[9m%s\u001B[0m";
+    Font["Bold"] = "\u001B[1m%s\u001B[0m";
 })(Font || (Font = {}));
 export const bgColors = {
     Black: Color.BgBlack,
@@ -80,19 +80,28 @@ class Log {
      * @param s String to print
      */
     static log(s) {
-        console.log(s);
+        const arr = [this.c, this.f, s].filter((i) => !!i);
+        if (arr)
+            console.log(...arr);
+        this.clear();
     }
     /**
      * @description background color
      */
-    static bg() {
-        this.colorSet = bgColors;
+    static bg(c) {
+        if (c)
+            this.c = c;
+        else
+            this.colorSet = bgColors;
     }
     /**
      * @description foreground color
      */
-    static fr() {
-        this.colorSet = fgColors;
+    static fr(c) {
+        if (c)
+            this.c = c;
+        else
+            this.colorSet = fgColors;
     }
     /**
      *
@@ -101,6 +110,7 @@ class Log {
      */
     static error(s) {
         console.log(this.colorSet.Red, s);
+        this.clear();
     }
     /**
      *
@@ -109,6 +119,7 @@ class Log {
      */
     static warning(s) {
         console.log(this.colorSet.Yellow, s);
+        this.clear();
     }
     /**
      *
@@ -117,6 +128,7 @@ class Log {
      */
     static progress(s) {
         console.log(this.colorSet.Blue, s);
+        this.clear();
     }
     /**
      *
@@ -125,6 +137,7 @@ class Log {
      */
     static success(s) {
         console.log(this.colorSet.Green, s);
+        this.clear();
     }
     static reset() {
         this.f = font.Reset;
@@ -161,6 +174,13 @@ class Log {
     static bold() {
         this.f = font.Bold;
         return this;
+    }
+    static style(f) {
+        this.f = f;
+    }
+    static clear() {
+        this.c = undefined;
+        this.f = undefined;
     }
     static createList() {
         return new LogList();
