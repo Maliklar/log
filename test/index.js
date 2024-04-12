@@ -1,7 +1,6 @@
-import Log, { Color } from "node-fancy-log";
-import { Font } from "node-fancy-log";
+import Log from "node-fancy-log";
 
 // Log.blink().log("HI");
-Log.italic().log("HI");
-Log.color(Color.BgRed).italic().log("Red");
-console.log(Color.BgRed + Font.Italic, "Malik");
+Log.color("red").log("HI");
+Log.color("green").bgColor("green").bold().log("HI");
+console.log("\x1b[31m", "\x1b[44m", "HI", "\x1b[0m\x1b[0m");

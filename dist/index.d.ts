@@ -1,136 +1,141 @@
 export declare enum Color {
-    FgBlack = "\u001B[30m%s\u001B[0m",
-    FgRed = "\u001B[31m%s\u001B[0m",
-    FgGreen = "\u001B[32m%s\u001B[0m",
-    FgYellow = "\u001B[33m%s\u001B[0m",
-    FgBlue = "\u001B[34m%s\u001B[0m",
-    FgMagenta = "\u001B[35m%s\u001B[0m",
-    FgCyan = "\u001B[36m%s\u001B[0m",
-    FgWhite = "\u001B[37m%s\u001B[0m",
-    FgGray = "\u001B[90m%s\u001B[0m",
-    BgBlack = "\u001B[40m%s\u001B[0m",
-    BgRed = "\u001B[41m%s\u001B[0m",
-    BgGreen = "\u001B[42m%s\u001B[0m",
-    BgYellow = "\u001B[43m%s\u001B[0m",
-    BgBlue = "\u001B[44m%s\u001B[0m",
-    BgMagenta = "\u001B[45m%s\u001B[0m",
-    BgCyan = "\u001B[46m%s\u001B[0m",
-    BgWhite = "\u001B[47m%s\u001B[0m",
-    BgGray = "\u001B[100m%s\u001B[0m"
+    FgBlack = "\u001B[30m",
+    FgRed = "\u001B[31m",
+    FgGreen = "\u001B[32m",
+    FgYellow = "\u001B[33m",
+    FgBlue = "\u001B[34m",
+    FgMagenta = "\u001B[35m",
+    FgCyan = "\u001B[36m",
+    FgWhite = "\u001B[37m",
+    FgGray = "\u001B[90m",
+    BgBlack = "\u001B[40m",
+    BgRed = "\u001B[41m",
+    BgGreen = "\u001B[42m",
+    BgYellow = "\u001B[43m",
+    BgBlue = "\u001B[44m",
+    BgMagenta = "\u001B[45m",
+    BgCyan = "\u001B[46m",
+    BgWhite = "\u001B[47m",
+    BgGray = "\u001B[100m"
 }
 export declare enum Font {
-    Reset = "\u001B[0m%s\u001B[0m",
-    Bright = "\u001B[1m%s\u001B[0m",
-    Dim = "\u001B[2m%s\u001B[0m",
-    Underscore = "\u001B[4m%s\u001B[0m",
-    Blink = "\u001B[5m%s\u001B[0m",
-    Reverse = "\u001B[7m%s\u001B[0m",
-    Hidden = "\u001B[8m%s\u001B[0m",
-    Italic = "\u001B[3m%s\u001B[0m",
-    Strikethrough = "\u001B[9m%s\u001B[0m",
-    Bold = "\u001B[1m%s\u001B[0m"
+    Bright = "\u001B[1m",
+    Dim = "\u001B[2m",
+    Underscore = "\u001B[4m",
+    Blink = "\u001B[5m",
+    Reverse = "\u001B[7m",
+    Hidden = "\u001B[8m",
+    Italic = "\u001B[3m",
+    Strikethrough = "\u001B[9m",
+    Bold = "\u001B[1m"
 }
 export declare const bgColors: {
-    Black: Color;
-    Red: Color;
-    Green: Color;
-    Yellow: Color;
-    Blue: Color;
-    Magenta: Color;
-    Cyan: Color;
-    White: Color;
-    Gray: Color;
+    readonly black: Color.BgBlack;
+    readonly red: Color.BgRed;
+    readonly green: Color.BgGreen;
+    readonly yellow: Color.BgYellow;
+    readonly blue: Color.BgBlue;
+    readonly magenta: Color.BgMagenta;
+    readonly cyan: Color.BgCyan;
+    readonly white: Color.BgWhite;
+    readonly gray: Color.BgGray;
 };
 export declare const fgColors: {
-    Black: Color;
-    Red: Color;
-    Green: Color;
-    Yellow: Color;
-    Blue: Color;
-    Magenta: Color;
-    Cyan: Color;
-    White: Color;
-    Gray: Color;
+    readonly black: Color.FgBlack;
+    readonly red: Color.FgRed;
+    readonly green: Color.FgGreen;
+    readonly yellow: Color.FgYellow;
+    readonly blue: Color.FgBlue;
+    readonly magenta: Color.FgMagenta;
+    readonly cyan: Color.FgCyan;
+    readonly white: Color.FgWhite;
+    readonly gray: Color.FgGray;
 };
 export declare const font: {
-    Reset: Font;
-    Blink: Font;
-    Dim: Font;
-    Hidden: Font;
-    Reverse: Font;
-    Underscore: Font;
-    Italic: Font;
-    Strikethrough: Font;
-    Bold: Font;
+    readonly blink: Font.Blink;
+    readonly dim: Font.Dim;
+    readonly hidden: Font.Hidden;
+    readonly reverse: Font.Reverse;
+    readonly underscore: Font.Underscore;
+    readonly italic: Font.Italic;
+    readonly strikethrough: Font.Strikethrough;
+    readonly bold: Font.Bright;
 };
+type InputStyle = "blink" | "dim" | "hidden" | "reverse" | "underscore" | "italic" | "strikethrough" | "bold";
+type InputColor = "black" | "red" | "green" | "yellow" | "blue" | "magenta" | "cyan" | "white" | "gray";
 export default class Log {
-    static c: Color | undefined;
-    static colorSet: {
-        Black: Color;
-        Red: Color;
-        Green: Color;
-        Yellow: Color;
-        Blue: Color;
-        Magenta: Color;
-        Cyan: Color;
-        White: Color;
-        Gray: Color;
-    };
+    static fgC: Color | undefined;
+    static bgC: Color | undefined;
     static f: Font | undefined;
-    /**
-     *
-     * @param c Color for the string
-     * @returns instance of static Log class
-     */
-    static color(c: Color): typeof Log;
     /**
      *
      * @param s String to print
      */
     static log(s: string): void;
     /**
-     * @description background color
+     *
+     * @param c String containing a color
+     * @returns Instance of static Log class
+     * @description Sets the text color
+     * @example color("green")
      */
-    static bg(c?: Color): void;
-    /**
-     * @description foreground color
-     */
-    static fr(c?: Color): void;
+    static color(c: InputColor): typeof Log;
     /**
      *
-     * @param s String to print
-     * @description Prints an error message
+     * @param c String containing a color
+     * @returns Instance of static Log class
+     * @description Sets the text's background color
+     * @example bgColor("green")
      */
-    static error(s: string): void;
+    static bgColor(c: InputColor): typeof Log;
     /**
-     *
-     * @param s String to print
-     * @description Prints an warning message
+     * @description Sets the font style to blink
+     * @returns Instance of static Log class
      */
-    static warning(s: string): void;
-    /**
-     *
-     * @param s String to print
-     * @description Prints an progress message
-     */
-    static progress(s: string): void;
-    /**
-     *
-     * @param s String to print
-     * @description Prints an success message
-     */
-    static success(s: string): void;
-    static reset(): typeof Log;
     static blink(): typeof Log;
+    /**
+     * @description Sets the font style to dim
+     * @returns Instance of static Log class
+     */
     static dim(): typeof Log;
+    /**
+     * @description Sets the font style to hidden
+     * @returns Instance of static Log class
+     */
     static hidden(): typeof Log;
+    /**
+     * @description Sets the font style to reverse
+     * @returns Instance of static Log class
+     */
     static reverse(): typeof Log;
+    /**
+     * @description Sets the font style to underscore
+     * @returns Instance of static Log class
+     */
     static underscore(): typeof Log;
+    /**
+     * @description Sets the font style to italic
+     * @returns Instance of static Log class
+     */
     static italic(): typeof Log;
+    /**
+     * @description Sets the font style to strikethrough
+     * @returns Instance of static Log class
+     */
     static strike(): typeof Log;
+    /**
+     * @description Sets the font style to bold
+     * @returns Instance of static Log class
+     */
     static bold(): typeof Log;
-    static style(f: Font): void;
-    static clear(): void;
+    /**
+     *
+     * @param f InputStyle string
+     * @description Sets the font style
+     * @returns Instance of static Log class
+     * @example style("bold").log("Hello");
+     */
+    static style(f: InputStyle): typeof Log;
     static createList(): LogList;
 }
 declare class LogList extends Log {

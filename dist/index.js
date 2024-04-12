@@ -1,193 +1,188 @@
 export var Color;
 (function (Color) {
-    Color["FgBlack"] = "\u001B[30m%s\u001B[0m";
-    Color["FgRed"] = "\u001B[31m%s\u001B[0m";
-    Color["FgGreen"] = "\u001B[32m%s\u001B[0m";
-    Color["FgYellow"] = "\u001B[33m%s\u001B[0m";
-    Color["FgBlue"] = "\u001B[34m%s\u001B[0m";
-    Color["FgMagenta"] = "\u001B[35m%s\u001B[0m";
-    Color["FgCyan"] = "\u001B[36m%s\u001B[0m";
-    Color["FgWhite"] = "\u001B[37m%s\u001B[0m";
-    Color["FgGray"] = "\u001B[90m%s\u001B[0m";
-    Color["BgBlack"] = "\u001B[40m%s\u001B[0m";
-    Color["BgRed"] = "\u001B[41m%s\u001B[0m";
-    Color["BgGreen"] = "\u001B[42m%s\u001B[0m";
-    Color["BgYellow"] = "\u001B[43m%s\u001B[0m";
-    Color["BgBlue"] = "\u001B[44m%s\u001B[0m";
-    Color["BgMagenta"] = "\u001B[45m%s\u001B[0m";
-    Color["BgCyan"] = "\u001B[46m%s\u001B[0m";
-    Color["BgWhite"] = "\u001B[47m%s\u001B[0m";
-    Color["BgGray"] = "\u001B[100m%s\u001B[0m";
+    Color["FgBlack"] = "\u001B[30m";
+    Color["FgRed"] = "\u001B[31m";
+    Color["FgGreen"] = "\u001B[32m";
+    Color["FgYellow"] = "\u001B[33m";
+    Color["FgBlue"] = "\u001B[34m";
+    Color["FgMagenta"] = "\u001B[35m";
+    Color["FgCyan"] = "\u001B[36m";
+    Color["FgWhite"] = "\u001B[37m";
+    Color["FgGray"] = "\u001B[90m";
+    Color["BgBlack"] = "\u001B[40m";
+    Color["BgRed"] = "\u001B[41m";
+    Color["BgGreen"] = "\u001B[42m";
+    Color["BgYellow"] = "\u001B[43m";
+    Color["BgBlue"] = "\u001B[44m";
+    Color["BgMagenta"] = "\u001B[45m";
+    Color["BgCyan"] = "\u001B[46m";
+    Color["BgWhite"] = "\u001B[47m";
+    Color["BgGray"] = "\u001B[100m";
 })(Color || (Color = {}));
 export var Font;
 (function (Font) {
-    Font["Reset"] = "\u001B[0m%s\u001B[0m";
-    Font["Bright"] = "\u001B[1m%s\u001B[0m";
-    Font["Dim"] = "\u001B[2m%s\u001B[0m";
-    Font["Underscore"] = "\u001B[4m%s\u001B[0m";
-    Font["Blink"] = "\u001B[5m%s\u001B[0m";
-    Font["Reverse"] = "\u001B[7m%s\u001B[0m";
-    Font["Hidden"] = "\u001B[8m%s\u001B[0m";
-    Font["Italic"] = "\u001B[3m%s\u001B[0m";
-    Font["Strikethrough"] = "\u001B[9m%s\u001B[0m";
-    Font["Bold"] = "\u001B[1m%s\u001B[0m";
+    Font["Bright"] = "\u001B[1m";
+    Font["Dim"] = "\u001B[2m";
+    Font["Underscore"] = "\u001B[4m";
+    Font["Blink"] = "\u001B[5m";
+    Font["Reverse"] = "\u001B[7m";
+    Font["Hidden"] = "\u001B[8m";
+    Font["Italic"] = "\u001B[3m";
+    Font["Strikethrough"] = "\u001B[9m";
+    Font["Bold"] = "\u001B[1m";
 })(Font || (Font = {}));
 export const bgColors = {
-    Black: Color.BgBlack,
-    Red: Color.BgRed,
-    Green: Color.BgGreen,
-    Yellow: Color.BgYellow,
-    Blue: Color.BgBlue,
-    Magenta: Color.BgMagenta,
-    Cyan: Color.BgCyan,
-    White: Color.BgWhite,
-    Gray: Color.BgGray,
+    black: Color.BgBlack,
+    red: Color.BgRed,
+    green: Color.BgGreen,
+    yellow: Color.BgYellow,
+    blue: Color.BgBlue,
+    magenta: Color.BgMagenta,
+    cyan: Color.BgCyan,
+    white: Color.BgWhite,
+    gray: Color.BgGray,
 };
 export const fgColors = {
-    Black: Color.FgBlack,
-    Red: Color.FgRed,
-    Green: Color.FgGreen,
-    Yellow: Color.FgYellow,
-    Blue: Color.FgBlue,
-    Magenta: Color.FgMagenta,
-    Cyan: Color.FgCyan,
-    White: Color.FgWhite,
-    Gray: Color.FgGray,
+    black: Color.FgBlack,
+    red: Color.FgRed,
+    green: Color.FgGreen,
+    yellow: Color.FgYellow,
+    blue: Color.FgBlue,
+    magenta: Color.FgMagenta,
+    cyan: Color.FgCyan,
+    white: Color.FgWhite,
+    gray: Color.FgGray,
 };
 export const font = {
-    Reset: Font.Reset,
-    Blink: Font.Blink,
-    Dim: Font.Dim,
-    Hidden: Font.Hidden,
-    Reverse: Font.Reverse,
-    Underscore: Font.Underscore,
-    Italic: Font.Italic,
-    Strikethrough: Font.Strikethrough,
-    Bold: Font.Bold,
+    blink: Font.Blink,
+    dim: Font.Dim,
+    hidden: Font.Hidden,
+    reverse: Font.Reverse,
+    underscore: Font.Underscore,
+    italic: Font.Italic,
+    strikethrough: Font.Strikethrough,
+    bold: Font.Bold,
 };
-class Log {
-    /**
-     *
-     * @param c Color for the string
-     * @returns instance of static Log class
-     */
-    static color(c) {
-        this.c = c;
-        return this;
-    }
+export default class Log {
     /**
      *
      * @param s String to print
      */
     static log(s) {
-        const arr = [this.c, this.f, s].filter((i) => !!i);
+        const END = "\x1b[0m";
+        const arr = [this.fgC, this.bgC, this.f].filter((i) => !!i);
         if (arr)
-            console.log(...arr);
-        this.clear();
-    }
-    /**
-     * @description background color
-     */
-    static bg(c) {
-        if (c)
-            this.c = c;
+            console.log(...arr, s, END);
         else
-            this.colorSet = bgColors;
-    }
-    /**
-     * @description foreground color
-     */
-    static fr(c) {
-        if (c)
-            this.c = c;
-        else
-            this.colorSet = fgColors;
-    }
-    /**
-     *
-     * @param s String to print
-     * @description Prints an error message
-     */
-    static error(s) {
-        console.log(this.colorSet.Red, s);
-        this.clear();
-    }
-    /**
-     *
-     * @param s String to print
-     * @description Prints an warning message
-     */
-    static warning(s) {
-        console.log(this.colorSet.Yellow, s);
-        this.clear();
-    }
-    /**
-     *
-     * @param s String to print
-     * @description Prints an progress message
-     */
-    static progress(s) {
-        console.log(this.colorSet.Blue, s);
-        this.clear();
-    }
-    /**
-     *
-     * @param s String to print
-     * @description Prints an success message
-     */
-    static success(s) {
-        console.log(this.colorSet.Green, s);
-        this.clear();
-    }
-    static reset() {
-        this.f = font.Reset;
-        return this;
-    }
-    static blink() {
-        this.f = font.Blink;
-        return this;
-    }
-    static dim() {
-        this.f = font.Dim;
-        return this;
-    }
-    static hidden() {
-        this.f = font.Hidden;
-        return this;
-    }
-    static reverse() {
-        this.f = font.Reverse;
-        return this;
-    }
-    static underscore() {
-        this.f = font.Underscore;
-        return this;
-    }
-    static italic() {
-        this.f = font.Italic;
-        return this;
-    }
-    static strike() {
-        this.f = font.Strikethrough;
-        return this;
-    }
-    static bold() {
-        this.f = font.Bold;
-        return this;
-    }
-    static style(f) {
-        this.f = f;
-    }
-    static clear() {
-        this.c = undefined;
+            console.log(s);
+        this.fgC = undefined;
+        this.bgC = undefined;
         this.f = undefined;
+    }
+    /**
+     *
+     * @param c String containing a color
+     * @returns Instance of static Log class
+     * @description Sets the text color
+     * @example color("green")
+     */
+    static color(c) {
+        if (c in fgColors)
+            this.fgC = fgColors[c];
+        return this;
+    }
+    /**
+     *
+     * @param c String containing a color
+     * @returns Instance of static Log class
+     * @description Sets the text's background color
+     * @example bgColor("green")
+     */
+    static bgColor(c) {
+        if (c in bgColors)
+            this.bgC = bgColors[c];
+        return this;
+    }
+    /**
+     * @description Sets the font style to blink
+     * @returns Instance of static Log class
+     */
+    static blink() {
+        this.f = font.blink;
+        return this;
+    }
+    /**
+     * @description Sets the font style to dim
+     * @returns Instance of static Log class
+     */
+    static dim() {
+        this.f = font.dim;
+        return this;
+    }
+    /**
+     * @description Sets the font style to hidden
+     * @returns Instance of static Log class
+     */
+    static hidden() {
+        this.f = font.hidden;
+        return this;
+    }
+    /**
+     * @description Sets the font style to reverse
+     * @returns Instance of static Log class
+     */
+    static reverse() {
+        this.f = font.reverse;
+        return this;
+    }
+    /**
+     * @description Sets the font style to underscore
+     * @returns Instance of static Log class
+     */
+    static underscore() {
+        this.f = font.underscore;
+        return this;
+    }
+    /**
+     * @description Sets the font style to italic
+     * @returns Instance of static Log class
+     */
+    static italic() {
+        this.f = font.italic;
+        return this;
+    }
+    /**
+     * @description Sets the font style to strikethrough
+     * @returns Instance of static Log class
+     */
+    static strike() {
+        this.f = font.strikethrough;
+        return this;
+    }
+    /**
+     * @description Sets the font style to bold
+     * @returns Instance of static Log class
+     */
+    static bold() {
+        this.f = font.bold;
+        return this;
+    }
+    /**
+     *
+     * @param f InputStyle string
+     * @description Sets the font style
+     * @returns Instance of static Log class
+     * @example style("bold").log("Hello");
+     */
+    static style(f) {
+        if (f in font)
+            this.f = font[f];
+        return this;
     }
     static createList() {
         return new LogList();
     }
 }
-Log.colorSet = bgColors;
-export default Log;
 class LogList extends Log {
     constructor() {
         super(...arguments);

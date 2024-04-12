@@ -1,195 +1,215 @@
 export enum Color {
-  FgBlack = "\x1b[30m%s\x1b[0m",
-  FgRed = "\x1b[31m%s\x1b[0m",
-  FgGreen = "\x1b[32m%s\x1b[0m",
-  FgYellow = "\x1b[33m%s\x1b[0m",
-  FgBlue = "\x1b[34m%s\x1b[0m",
-  FgMagenta = "\x1b[35m%s\x1b[0m",
-  FgCyan = "\x1b[36m%s\x1b[0m",
-  FgWhite = "\x1b[37m%s\x1b[0m",
-  FgGray = "\x1b[90m%s\x1b[0m",
+  FgBlack = "\x1b[30m",
+  FgRed = "\x1b[31m",
+  FgGreen = "\x1b[32m",
+  FgYellow = "\x1b[33m",
+  FgBlue = "\x1b[34m",
+  FgMagenta = "\x1b[35m",
+  FgCyan = "\x1b[36m",
+  FgWhite = "\x1b[37m",
+  FgGray = "\x1b[90m",
 
-  BgBlack = "\x1b[40m%s\x1b[0m",
-  BgRed = "\x1b[41m%s\x1b[0m",
-  BgGreen = "\x1b[42m%s\x1b[0m",
-  BgYellow = "\x1b[43m%s\x1b[0m",
-  BgBlue = "\x1b[44m%s\x1b[0m",
-  BgMagenta = "\x1b[45m%s\x1b[0m",
-  BgCyan = "\x1b[46m%s\x1b[0m",
-  BgWhite = "\x1b[47m%s\x1b[0m",
-  BgGray = "\x1b[100m%s\x1b[0m",
+  BgBlack = "\x1b[40m",
+  BgRed = "\x1b[41m",
+  BgGreen = "\x1b[42m",
+  BgYellow = "\x1b[43m",
+  BgBlue = "\x1b[44m",
+  BgMagenta = "\x1b[45m",
+  BgCyan = "\x1b[46m",
+  BgWhite = "\x1b[47m",
+  BgGray = "\x1b[100m",
 }
 
 export enum Font {
-  Reset = "\x1b[0m%s\x1b[0m",
-  Bright = "\x1b[1m%s\x1b[0m",
-  Dim = "\x1b[2m%s\x1b[0m",
-  Underscore = "\x1b[4m%s\x1b[0m",
-  Blink = "\x1b[5m%s\x1b[0m",
-  Reverse = "\x1b[7m%s\x1b[0m",
-  Hidden = "\x1b[8m%s\x1b[0m",
-  Italic = "\x1b[3m%s\x1b[0m",
-  Strikethrough = "\x1b[9m%s\x1b[0m",
-  Bold = "\x1b[1m%s\x1b[0m",
+  Bright = "\x1b[1m",
+  Dim = "\x1b[2m",
+  Underscore = "\x1b[4m",
+  Blink = "\x1b[5m",
+  Reverse = "\x1b[7m",
+  Hidden = "\x1b[8m",
+  Italic = "\x1b[3m",
+  Strikethrough = "\x1b[9m",
+  Bold = "\x1b[1m",
 }
 
 export const bgColors = {
-  Black: Color.BgBlack,
-  Red: Color.BgRed,
-  Green: Color.BgGreen,
-  Yellow: Color.BgYellow,
-  Blue: Color.BgBlue,
-  Magenta: Color.BgMagenta,
-  Cyan: Color.BgCyan,
-  White: Color.BgWhite,
-  Gray: Color.BgGray,
-};
+  black: Color.BgBlack,
+  red: Color.BgRed,
+  green: Color.BgGreen,
+  yellow: Color.BgYellow,
+  blue: Color.BgBlue,
+  magenta: Color.BgMagenta,
+  cyan: Color.BgCyan,
+  white: Color.BgWhite,
+  gray: Color.BgGray,
+} as const;
 export const fgColors = {
-  Black: Color.FgBlack,
-  Red: Color.FgRed,
-  Green: Color.FgGreen,
-  Yellow: Color.FgYellow,
-  Blue: Color.FgBlue,
-  Magenta: Color.FgMagenta,
-  Cyan: Color.FgCyan,
-  White: Color.FgWhite,
-  Gray: Color.FgGray,
-};
+  black: Color.FgBlack,
+  red: Color.FgRed,
+  green: Color.FgGreen,
+  yellow: Color.FgYellow,
+  blue: Color.FgBlue,
+  magenta: Color.FgMagenta,
+  cyan: Color.FgCyan,
+  white: Color.FgWhite,
+  gray: Color.FgGray,
+} as const;
 export const font = {
-  Reset: Font.Reset,
-  Blink: Font.Blink,
-  Dim: Font.Dim,
-  Hidden: Font.Hidden,
-  Reverse: Font.Reverse,
-  Underscore: Font.Underscore,
-  Italic: Font.Italic,
-  Strikethrough: Font.Strikethrough,
-  Bold: Font.Bold,
-};
+  blink: Font.Blink,
+  dim: Font.Dim,
+  hidden: Font.Hidden,
+  reverse: Font.Reverse,
+  underscore: Font.Underscore,
+  italic: Font.Italic,
+  strikethrough: Font.Strikethrough,
+  bold: Font.Bold,
+} as const;
 
+type InputStyle =
+  | "blink"
+  | "dim"
+  | "hidden"
+  | "reverse"
+  | "underscore"
+  | "italic"
+  | "strikethrough"
+  | "bold";
+
+type InputColor =
+  | "black"
+  | "red"
+  | "green"
+  | "yellow"
+  | "blue"
+  | "magenta"
+  | "cyan"
+  | "white"
+  | "gray";
 export default class Log {
-  static c: Color | undefined;
-  static colorSet = bgColors;
+  static fgC: Color | undefined;
+  static bgC: Color | undefined;
   static f: Font | undefined;
-
-  /**
-   *
-   * @param c Color for the string
-   * @returns instance of static Log class
-   */
-  static color(c: Color) {
-    this.c = c;
-    return this;
-  }
 
   /**
    *
    * @param s String to print
    */
   static log(s: string) {
-    const arr = [this.c, this.f, s].filter((i) => !!i);
-    if (arr) console.log(...arr);
-    this.clear();
-  }
+    const END = "\x1b[0m";
 
-  /**
-   * @description background color
-   */
-  static bg(c?: Color) {
-    if (c) this.c = c;
-    else this.colorSet = bgColors;
-  }
-
-  /**
-   * @description foreground color
-   */
-  static fr(c?: Color) {
-    if (c) this.c = c;
-    else this.colorSet = fgColors;
-  }
-
-  /**
-   *
-   * @param s String to print
-   * @description Prints an error message
-   */
-  static error(s: string) {
-    console.log(this.colorSet.Red, s);
-    this.clear();
-  }
-  /**
-   *
-   * @param s String to print
-   * @description Prints an warning message
-   */
-  static warning(s: string) {
-    console.log(this.colorSet.Yellow, s);
-    this.clear();
-  }
-
-  /**
-   *
-   * @param s String to print
-   * @description Prints an progress message
-   */
-  static progress(s: string) {
-    console.log(this.colorSet.Blue, s);
-    this.clear();
-  }
-
-  /**
-   *
-   * @param s String to print
-   * @description Prints an success message
-   */
-  static success(s: string) {
-    console.log(this.colorSet.Green, s);
-    this.clear();
-  }
-
-  static reset() {
-    this.f = font.Reset;
-    return this;
-  }
-  static blink() {
-    this.f = font.Blink;
-    return this;
-  }
-  static dim() {
-    this.f = font.Dim;
-    return this;
-  }
-  static hidden() {
-    this.f = font.Hidden;
-    return this;
-  }
-  static reverse() {
-    this.f = font.Reverse;
-    return this;
-  }
-  static underscore() {
-    this.f = font.Underscore;
-    return this;
-  }
-  static italic() {
-    this.f = font.Italic;
-    return this;
-  }
-  static strike() {
-    this.f = font.Strikethrough;
-    return this;
-  }
-  static bold() {
-    this.f = font.Bold;
-    return this;
-  }
-  static style(f: Font) {
-    this.f = f;
-  }
-
-  static clear() {
-    this.c = undefined;
+    const arr = [this.fgC, this.bgC, this.f].filter((i) => !!i);
+    if (arr) console.log(...arr, s, END);
+    else console.log(s);
+    this.fgC = undefined;
+    this.bgC = undefined;
     this.f = undefined;
+  }
+
+  /**
+   *
+   * @param c String containing a color
+   * @returns Instance of static Log class
+   * @description Sets the text color
+   * @example color("green")
+   */
+  static color(c: InputColor) {
+    if (c in fgColors) this.fgC = fgColors[c];
+    return this;
+  }
+
+  /**
+   *
+   * @param c String containing a color
+   * @returns Instance of static Log class
+   * @description Sets the text's background color
+   * @example bgColor("green")
+   */
+  static bgColor(c: InputColor) {
+    if (c in bgColors) this.bgC = bgColors[c];
+    return this;
+  }
+
+  /**
+   * @description Sets the font style to blink
+   * @returns Instance of static Log class
+   */
+  static blink() {
+    this.f = font.blink;
+    return this;
+  }
+
+  /**
+   * @description Sets the font style to dim
+   * @returns Instance of static Log class
+   */
+  static dim() {
+    this.f = font.dim;
+    return this;
+  }
+
+  /**
+   * @description Sets the font style to hidden
+   * @returns Instance of static Log class
+   */
+  static hidden() {
+    this.f = font.hidden;
+    return this;
+  }
+
+  /**
+   * @description Sets the font style to reverse
+   * @returns Instance of static Log class
+   */
+  static reverse() {
+    this.f = font.reverse;
+    return this;
+  }
+
+  /**
+   * @description Sets the font style to underscore
+   * @returns Instance of static Log class
+   */
+  static underscore() {
+    this.f = font.underscore;
+    return this;
+  }
+
+  /**
+   * @description Sets the font style to italic
+   * @returns Instance of static Log class
+   */
+  static italic() {
+    this.f = font.italic;
+    return this;
+  }
+
+  /**
+   * @description Sets the font style to strikethrough
+   * @returns Instance of static Log class
+   */
+  static strike() {
+    this.f = font.strikethrough;
+    return this;
+  }
+
+  /**
+   * @description Sets the font style to bold
+   * @returns Instance of static Log class
+   */
+  static bold() {
+    this.f = font.bold;
+    return this;
+  }
+  /**
+   *
+   * @param f InputStyle string
+   * @description Sets the font style
+   * @returns Instance of static Log class
+   * @example style("bold").log("Hello");
+   */
+  static style(f: InputStyle) {
+    if (f in font) this.f = font[f];
+    return this;
   }
 
   static createList() {

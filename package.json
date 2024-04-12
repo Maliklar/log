@@ -10,7 +10,9 @@
   ],
   "scripts": {
     "test": "node test/index.js",
-    "build": "tsc"
+    "prebuild": "rmdir /s /q node_modules",
+    "build": "tsc",
+    "postbuild": "npm link node-fancy-log"
   },
   "repository": {
     "type": "git",
@@ -34,8 +36,5 @@
   "bugs": {
     "url": "https://github.com/Maliklar/log/issues"
   },
-  "homepage": "https://github.com/Maliklar/log#readme",
-  "dependencies": {
-    "node-fancy-log": "^1.0.0"
-  }
+  "homepage": "https://github.com/Maliklar/log#readme"
 }
